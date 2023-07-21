@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HospitalModelStoreContainer" CdmEntityContainer="HospitalEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="HospitalModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="paneltur" ColumnName="paneltur" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="loginbaglanti" FunctionName="HospitalModel.Store.loginbaglanti" />
+    <EntitySetMapping Name="Personels">
+      <EntityTypeMapping TypeName="HospitalModel.Personels">
+        <MappingFragment StoreEntitySet="Personels">
+          <ScalarProperty Name="eposta" ColumnName="eposta" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+          <ScalarProperty Name="departman" ColumnName="departman" />
+          <ScalarProperty Name="dogumtarihi" ColumnName="dogumtarihi" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="tc" ColumnName="tc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

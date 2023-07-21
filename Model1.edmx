@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hospital.dbo.Personels' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Personels">
+          <Key>
+            <PropertyRef Name="tc" />
+            <PropertyRef Name="ad" />
+            <PropertyRef Name="soyad" />
+            <PropertyRef Name="departman" />
+          </Key>
+          <Property Name="tc" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="ad" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="soyad" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="dogumtarihi" Type="date" />
+          <Property Name="departman" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="cinsiyet" Type="nchar" MaxLength="10" />
+          <Property Name="telefon" Type="nchar" MaxLength="15" />
+          <Property Name="eposta" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hospital.dbo.Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userid" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="paneltur" />
+          </Key>
+          <Property Name="userid" Type="int" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="paneltur" Type="int" Nullable="false" />
+        </EntityType>
+        <Function Name="loginbaglanti" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="HospitalModelStoreContainer">
+          <EntitySet Name="Personels" EntityType="Self.Personels" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Personels].[tc] AS [tc], 
+    [Personels].[ad] AS [ad], 
+    [Personels].[soyad] AS [soyad], 
+    [Personels].[dogumtarihi] AS [dogumtarihi], 
+    [Personels].[departman] AS [departman], 
+    [Personels].[cinsiyet] AS [cinsiyet], 
+    [Personels].[telefon] AS [telefon], 
+    [Personels].[eposta] AS [eposta]
+    FROM [dbo].[Personels] AS [Personels]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Users].[userid] AS [userid], 
+    [Users].[password] AS [password], 
+    [Users].[paneltur] AS [paneltur]
+    FROM [dbo].[Users] AS [Users]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HospitalEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Users" EntityType="HospitalModel.Users" />
+          <FunctionImport Name="loginbaglanti" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USERBAGLANTI" ReturnType="Collection(HospitalModel.USERBAGLANTI_Result)">
+            <Parameter Name="username" Mode="In" Type="Int32" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Personels" EntityType="HospitalModel.Personels" />
+        </EntityContainer>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userid" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="paneltur" />
+          </Key>
+          <Property Name="userid" Type="Int32" Nullable="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="paneltur" Type="Int32" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="USERBAGLANTI_Result">
+          <Property Type="Int32" Name="userid" Nullable="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="paneltur" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Personels">
+          <Key>
+            <PropertyRef Name="tc" />
+            <PropertyRef Name="ad" />
+            <PropertyRef Name="soyad" />
+            <PropertyRef Name="departman" />
+          </Key>
+          <Property Name="tc" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="ad" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="soyad" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="dogumtarihi" Type="DateTime" Precision="0" />
+          <Property Name="departman" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="cinsiyet" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="eposta" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HospitalModelStoreContainer" CdmEntityContainer="HospitalEntities" >
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HospitalModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="paneltur" ColumnName="paneltur" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="loginbaglanti" FunctionName="HospitalModel.Store.loginbaglanti" />
+          <EntitySetMapping Name="Personels">
+            <EntityTypeMapping TypeName="HospitalModel.Personels">
+              <MappingFragment StoreEntitySet="Personels">
+                <ScalarProperty Name="eposta" ColumnName="eposta" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+                <ScalarProperty Name="departman" ColumnName="departman" />
+                <ScalarProperty Name="dogumtarihi" ColumnName="dogumtarihi" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="tc" ColumnName="tc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
